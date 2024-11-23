@@ -26,15 +26,8 @@ jobs:
 
     # Step 4: Build the solution
     - name: Build solution
-      run: dotnet build MyConsoleApp/MyConsoleApp.sln --configuration Release
+      run: dotnet build TestAssignment322/TestAssignment322.sln --configuration Release
 
     # Step 5: Run NUnit tests
     - name: Run NUnit Tests
-      run: dotnet test MyConsoleApp/MyConsoleApp.sln --configuration Release --logger "trx;LogFileName=test_results.trx"
-
-    # Step 6: Upload test results
-    - name: Upload Test Results
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: '**/*.trx'
+      run: dotnet test TestAssignment322/TestAssignment322.sln --configuration Release --logger "trx;LogFileName=test_results.trx"
