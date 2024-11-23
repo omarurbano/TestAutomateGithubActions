@@ -18,16 +18,14 @@ jobs:
     - name: Set up .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '7.0'
+        dotnet-version: '8.0'
 
-    # Step 3: Install dependencies
-    - name: Install dependencies
-      run: dotnet restore TestAssignment322/TestAssignment322.sln
+    # Step 3: Clean and rebuild the solution
+    - name: Clean and rebuild solution
+      run: |
+        dotnet clean TestAssignment322/TestAssignment322.sln
+        dotnet build TestAssignment322/TestAssignment322.sln --configuration Release
 
-    # Step 4: Build the solution
-    - name: Build solution
-      run: dotnet build TestAssignment322/TestAssignment322.sln --configuration Release
-
-    # Step 5: Run NUnit tests
+    # Step 4: Run NUnit tests
     - name: Run NUnit Tests
-      run: dotnet test TestAssignment322/TestAssignment322.sln --configuration Release --logger "trx;LogFileName=test_results.trx"
+      run: dotnet test TestAssignment322/TestAssignment322.sln --configuration Release --logger "trx;LogFileName=test_results.trx" --framework net8.0 --arch x64
