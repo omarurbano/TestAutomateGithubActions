@@ -1,0 +1,33 @@
+name: Run NUnit Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    runs-on: windows-latest
+
+    steps:
+    # Step 1: Check out the repository
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up .NET environment
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0'  # Update this to match your project's .NET version
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: dotnet restore
+
+    # Step 4: Build the project
+    - name: Build solution
+      run: dotnet build --configuration Release
+
+    # Step 5: Run NUnit tests
+    - name: Run NUnit Tests
+      run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=test_results.trx"
