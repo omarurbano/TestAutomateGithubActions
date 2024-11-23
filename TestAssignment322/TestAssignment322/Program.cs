@@ -10,6 +10,11 @@ namespace TestAssignment322
     {
         static void Main(string[] args)
         {
+            
+            PowerClass p = new PowerClass();
+
+            var  result = p.Power(2, 10);
+
         }
     }
 }
